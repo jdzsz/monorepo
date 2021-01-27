@@ -327,3 +327,1039 @@ class GithubActionsSourceClientAdapter
     githubActionsClient.close();
   }
 }
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
+  }
+
+  @override
+  void dispose() {
+    githubActionsClient.close();
+  }
+}
