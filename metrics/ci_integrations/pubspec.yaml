@@ -5,15 +5,15 @@ environment:
   sdk: '>=2.7.0 <3.0.0'
 
 dependencies:
+  archive: ^2.0.13
   args: ^1.6.0
   equatable: ^1.1.1
-  http: ^0.12.0+4
-  meta: ^1.1.8
-  archive: ^2.0.13
-  intl: ^0.16.1
   firedart:
     git:
       url: https://github.com/platform-platform/firedart.git
+  http: ^0.12.0+4
+  intl: ^0.16.1
+  meta: ^1.1.8
   metrics_core:
     path: ../core
   yaml_map:

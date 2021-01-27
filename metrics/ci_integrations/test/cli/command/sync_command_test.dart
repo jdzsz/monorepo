@@ -55,7 +55,7 @@ void main() {
 
       final writerMock = LoggerWriterMock();
       final loggerFactory = LoggerFactory(writer: writerMock);
-      final initialFetchLimit = syncCommand.getInitialFetchLimit();
+      final firstSyncFetchLimit = syncCommand.getFirstSyncFetchLimit();
 
       setUpAll(() {
         LoggerManager.setLoggerFactory(loggerFactory);
@@ -84,7 +84,7 @@ void main() {
         when(fileMock.existsSync()).thenReturn(true);
         when(fileMock.readAsStringSync()).thenReturn(configFileContent);
 
-        return when(ciIntegrationMock.sync(syncConfig, initialFetchLimit));
+        return when(ciIntegrationMock.sync(syncConfig, firstSyncFetchLimit));
       }
 
       test("has the 'config-file' option", () {
@@ -94,21 +94,24 @@ void main() {
         expect(options, contains('config-file'));
       });
 
-      test("has the 'initial-fetch-limit' option", () {
+      test("has the 'first-sync-fetch-limit' option", () {
         final argParser = syncCommand.argParser;
         final options = argParser.options;
 
-        expect(options, contains('initial-fetch-limit'));
+        expect(options, contains('first-sync-fetch-limit'));
       });
 
-      test("'initial-fetch-limit' option defaults to 28", () {
-        const expectedInitialFetchLimit = SyncCommand.defaultInitialFetchLimit;
+      test("'first-sync-fetch-limit' option defaults to 28", () {
+        const expectedfirstSyncFetchLimit =
+            SyncCommand.defaultFirstSyncFetchLimit;
 
         final argParser = syncCommand.argParser;
-        final fetchLimitOption = argParser.options['initial-fetch-limit'];
+        final fetchLimitOption = argParser.options['first-sync-fetch-limit'];
 
         expect(
-            fetchLimitOption.defaultsTo, equals('$expectedInitialFetchLimit'));
+          fetchLimitOption.defaultsTo,
+          equals('$expectedfirstSyncFetchLimit'),
+        );
       });
 
       test("has the command name equal to 'sync'", () {
@@ -243,8 +246,11 @@ void main() {
       );
 
       test(".run() calls dispose once", () async {
-        whenRunSync()
-            .thenAnswer((_) => Future.value(const InteractionResult.success()));
+        whenRunSync().thenAnswer(
+          (_) => Future.value(
+            const InteractionResult.success(),
+          ),
+        );
 
         await syncCommand.run();
 
@@ -266,16 +272,18 @@ void main() {
       });
 
       test(
-        ".run() runs sync on the given config and initial fetch limit",
+        ".run() runs sync on the given config and first sync fetch limit",
         () async {
           whenRunSync().thenAnswer(
-            (_) => Future.value(const InteractionResult.success()),
+            (_) => Future.value(
+              const InteractionResult.success(),
+            ),
           );
 
           await syncCommand.run();
 
           verify(
-            ciIntegrationMock.sync(syncConfig, initialFetchLimit),
+            ciIntegrationMock.sync(syncConfig, firstSyncFetchLimit),
           ).called(1);
         },
       );
@@ -285,7 +293,7 @@ void main() {
         () async {
           const interactionResult = InteractionResult.success();
 
-          when(ciIntegrationMock.sync(syncConfig, initialFetchLimit))
+          when(ciIntegrationMock.sync(syncConfig, firstSyncFetchLimit))
               .thenAnswer((_) => Future.value(interactionResult));
 
           await syncCommand.sync(
@@ -303,7 +311,7 @@ void main() {
         () async {
           const interactionResult = InteractionResult.error();
 
-          when(ciIntegrationMock.sync(syncConfig, initialFetchLimit))
+          when(ciIntegrationMock.sync(syncConfig, firstSyncFetchLimit))
               .thenAnswer((_) => Future.value(interactionResult));
 
           final syncFuture = syncCommand.sync(

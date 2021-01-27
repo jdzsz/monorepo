@@ -55,7 +55,7 @@ void main() {
     );
 
     test(
-      ".sync() throws an ArgumentError if the last build is null and the given initial fetch limit equals to 0",
+      ".sync() throws an ArgumentError if the the given first sync fetch limit equals to 0",
       () {
         final ciIntegration = CiIntegration(
           sourceClient: SourceClientStub(),
@@ -67,7 +67,7 @@ void main() {
     );
 
     test(
-      ".sync() throws an ArgumentError if last build is null and the given initial fetch limit is less than 0",
+      ".sync() throws an ArgumentError if last build is null and the given first sync fetch limit is less than 0",
       () {
         final ciIntegration = CiIntegration(
           sourceClient: SourceClientStub(),
