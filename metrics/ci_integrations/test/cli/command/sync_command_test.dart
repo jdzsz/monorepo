@@ -59,6 +59,7 @@ void main() {
 
       setUpAll(() {
         LoggerManager.setLoggerFactory(loggerFactory);
+        LoggerManager.instance.reset();
       });
 
       setUp(() {
@@ -282,7 +283,8 @@ void main() {
       test(
         ".sync() logs a message if a sync result is a success",
         () async {
-          const interactionResult = InteractionResult.success();
+          const interactionResult =
+              InteractionResult.success();
 
           when(ciIntegrationMock.sync(syncConfig, initialFetchLimit))
               .thenAnswer((_) => Future.value(interactionResult));
