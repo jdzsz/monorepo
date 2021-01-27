@@ -31,6 +31,8 @@ void main() {
       duration: DateTime(2021).difference(DateTime(2020)),
     );
 
+    const initialFetchLimit = 20;
+
     final buildkiteClientMock = _BuildkiteClientMock();
     final adapter = BuildkiteSourceClientAdapter(
       buildkiteClient: buildkiteClientMock,
@@ -98,12 +100,32 @@ void main() {
       expect(adapter.buildkiteClient, equals(buildkiteClientMock));
     });
 
+    test(
+      ".fetchBuilds() throws an ArgumentError if the given initial fetch limit is 0",
+      () {
+        expect(
+          () => adapter.fetchBuilds(pipelineSlug, 0),
+          throwsArgumentError,
+        );
+      },
+    );
+
+    test(
+      ".fetchBuilds() throws an ArgumentError if the given initial fetch limit is a negative number",
+      () {
+        expect(
+          () => adapter.fetchBuilds(pipelineSlug, -1),
+          throwsArgumentError,
+        );
+      },
+    );
+
     test(".fetchBuilds() fetches builds", () {
       whenFetchBuilds(
         withArtifactsPage: defaultArtifactsPage,
       ).thenSuccessWith(defaultBuildsPage);
 
-      final result = adapter.fetchBuilds(pipelineSlug);
+      final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
       expect(result, completion(equals(defaultBuildData)));
     });
@@ -118,7 +140,7 @@ void main() {
         withArtifactsPage: defaultArtifactsPage,
       ).thenSuccessWith(defaultBuildsPage);
 
-      final result = await adapter.fetchBuilds(pipelineSlug);
+      final result = await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
       final actualCoverage =
           result.map((buildData) => buildData.coverage).toList();
 
@@ -137,7 +159,8 @@ void main() {
           withArtifactsPage: artifactsPage,
         ).thenSuccessWith(defaultBuildsPage);
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final actualCoverage =
             result.map((buildData) => buildData.coverage).toList();
 
@@ -156,7 +179,8 @@ void main() {
 
         when(buildkiteClientMock.downloadArtifact(any)).thenSuccessWith(null);
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final actualCoverage =
             result.map((buildData) => buildData.coverage).toList();
 
@@ -178,7 +202,8 @@ void main() {
           utf8.encode(incorrectJson) as Uint8List,
         );
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final actualCoverage =
             result.map((buildData) => buildData.coverage).toList();
 
@@ -187,7 +212,7 @@ void main() {
     );
 
     test(
-      ".fetchBuilds() returns no more than the BuildkiteSourceClientAdapter.fetchLimit builds",
+      ".fetchBuilds() returns no more than the given initial fetch limit number of builds",
       () {
         final builds = testData.generateBuildkiteBuildsByNumbers(
           buildNumbers: List.generate(30, (index) => index),
@@ -198,11 +223,11 @@ void main() {
           withArtifactsPage: defaultArtifactsPage,
         ).thenSuccessWith(buildsPage);
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(
           result,
-          completion(hasLength(BuildkiteSourceClientAdapter.fetchLimit)),
+          completion(hasLength(initialFetchLimit)),
         );
       },
     );
@@ -215,7 +240,7 @@ void main() {
         withArtifactsPage: defaultArtifactsPage,
       ).thenSuccessWith(buildsPage);
 
-      final result = adapter.fetchBuilds(pipelineSlug);
+      final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
       expect(result, completion(isEmpty));
     });
@@ -230,7 +255,7 @@ void main() {
         when(buildkiteClientMock.fetchArtifactsNext(emptyArtifactsPage))
             .thenSuccessWith(defaultArtifactsPage);
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(result, completion(equals(defaultBuildData)));
       },
@@ -248,7 +273,8 @@ void main() {
         when(buildkiteClientMock.fetchArtifactsNext(emptyArtifactsPage))
             .thenSuccessWith(defaultArtifactsPage);
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final actualCoverage =
             result.map((buildData) => buildData.coverage).toList();
 
@@ -283,7 +309,7 @@ void main() {
         when(buildkiteClientMock.fetchBuildsNext(firstPage))
             .thenSuccessWith(secondPage);
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(result, completion(equals(expected)));
       },
@@ -296,7 +322,7 @@ void main() {
           withArtifactsPage: defaultArtifactsPage,
         ).thenErrorWith();
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(result, throwsStateError);
       },
@@ -318,7 +344,7 @@ void main() {
 
         when(buildkiteClientMock.fetchBuildsNext(firstPage)).thenErrorWith();
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(result, throwsStateError);
       },
@@ -338,7 +364,7 @@ void main() {
           page: anyNamed('page'),
         )).thenErrorWith();
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(result, throwsStateError);
       },
@@ -354,7 +380,7 @@ void main() {
         when(buildkiteClientMock.fetchArtifactsNext(emptyArtifactsPage))
             .thenErrorWith();
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(result, throwsStateError);
       },
@@ -369,7 +395,7 @@ void main() {
 
         when(buildkiteClientMock.downloadArtifact(any)).thenErrorWith();
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(result, throwsStateError);
       },
@@ -417,7 +443,7 @@ void main() {
         whenFetchBuilds(withArtifactsPage: defaultArtifactsPage)
             .thenSuccessWith(BuildkiteBuildsPage(values: builds));
 
-        final result = adapter.fetchBuilds(pipelineSlug);
+        final result = adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
 
         expect(result, completion(equals(expectedBuilds)));
       },
@@ -435,7 +461,8 @@ void main() {
           withArtifactsPage: defaultArtifactsPage,
         ).thenSuccessWith(BuildkiteBuildsPage(values: [build]));
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final duration = result.first.duration;
 
         expect(duration, equals(expectedDuration));
@@ -455,7 +482,8 @@ void main() {
           withArtifactsPage: defaultArtifactsPage,
         ).thenSuccessWith(BuildkiteBuildsPage(values: [build]));
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final duration = result.first.duration;
 
         expect(duration, equals(Duration.zero));
@@ -475,7 +503,8 @@ void main() {
           withArtifactsPage: defaultArtifactsPage,
         ).thenSuccessWith(BuildkiteBuildsPage(values: [build]));
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final duration = result.first.duration;
 
         expect(duration, equals(Duration.zero));
@@ -494,7 +523,8 @@ void main() {
           withArtifactsPage: defaultArtifactsPage,
         ).thenSuccessWith(const BuildkiteBuildsPage(values: [build]));
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final url = result.first.url;
 
         expect(url, equals(''));
@@ -515,7 +545,8 @@ void main() {
           withArtifactsPage: defaultArtifactsPage,
         ).thenSuccessWith(BuildkiteBuildsPage(values: [build]));
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final startedAt = result.first.startedAt;
 
         expect(startedAt, equals(finishedAt));
@@ -535,7 +566,8 @@ void main() {
           withArtifactsPage: defaultArtifactsPage,
         ).thenSuccessWith(const BuildkiteBuildsPage(values: [build]));
 
-        final result = await adapter.fetchBuilds(pipelineSlug);
+        final result =
+            await adapter.fetchBuilds(pipelineSlug, initialFetchLimit);
         final startedAt = result.first.startedAt;
 
         expect(startedAt, isNotNull);
