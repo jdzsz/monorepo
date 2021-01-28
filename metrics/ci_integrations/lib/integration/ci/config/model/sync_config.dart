@@ -1,3 +1,4 @@
+import 'package:ci_integration/util/validator/number_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -12,18 +13,32 @@ class SyncConfig extends Equatable {
   /// the loaded metrics will be saved to.
   final String destinationProjectId;
 
-  @override
-  List<Object> get props => [sourceProjectId, destinationProjectId];
+  /// A number of builds to fetch from the source during project's
+  /// first synchronization.
+  final int firstSyncFetchLimit;
 
-  /// Creates an instance of this configuration.
+  @override
+  List<Object> get props => [
+        sourceProjectId,
+        destinationProjectId,
+        firstSyncFetchLimit,
+      ];
+
+  /// Creates an instance of the [SyncConfig] with the given parameters.
   ///
-  /// Both [sourceProjectId] and [destinationProjectId] are required.
-  /// If one of these values is `null`, throws an [ArgumentError].
+  /// All parameters are required.
+  ///
+  /// Throws an [ArgumentError] if any of the given parameters is `null`.
+  ///
+  /// Throws an [ArgumentError] if the given [firstSyncFetchLimit] is not
+  /// greater than `0`.
   SyncConfig({
     @required this.sourceProjectId,
     @required this.destinationProjectId,
+    @required this.firstSyncFetchLimit,
   }) {
     ArgumentError.checkNotNull(sourceProjectId, 'sourceProjectId');
     ArgumentError.checkNotNull(destinationProjectId, 'destinationProjectId');
+    NumberValidator.checkGreaterThan(firstSyncFetchLimit, 0);
   }
 }
