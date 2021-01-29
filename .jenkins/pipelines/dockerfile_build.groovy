@@ -46,8 +46,8 @@ spec:
 
       container('kaniko') {
         stage('Copy credentials') {
-          withCredentials([usernamePassword(credentialsId: 'jenkins-dockerhub-credentials', passwordVariable: 'CI_REGISTRY_USER', usernameVariable: 'CI_REGISTRY_PASSWORD')]) {
-            sh "echo '{\"auths\":{\"https://index.docker.io/v1/\":{\"username\":\"${CI_REGISTRY_USER}\",\"password\":\"${CI_REGISTRY_PASSWORD}\"}}}' > /kaniko/.docker/config.json"
+          withCredentials([usernamePassword(credentialsId: 'jenkins-dockerhub-credentials-1', passwordVariable: 'CI_REGISTRY_password', usernameVariable: 'CI_REGISTRY_USERNAME')]) {
+            sh "echo '{\"auths\":{\"https://index.docker.io/v1/\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}' > /kaniko/.docker/config.json"
           }
         }
 
