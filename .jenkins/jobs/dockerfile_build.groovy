@@ -14,7 +14,7 @@ pipelineJob('dockerfile_build') {
                     branches('*/feat-jenkins')
                 }
             }
-            scriptPath('.jenkins/pipelines/dockerfile_build.groovy')
+            scriptPath('.jenkins/pipelines/dockerfile_build.groovy') 
         }
     }
 }
