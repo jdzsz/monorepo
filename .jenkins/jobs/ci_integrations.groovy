@@ -10,7 +10,7 @@ pipelineJob('ci_integrations') {
                     remote {
                         url('git@github.com:jdzsz/monorepo.git')
                         credentials('jenkins-key')
-                    }
+                    } 
                     branches('*/feat-jenkins')
                 }
             }

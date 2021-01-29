@@ -5,7 +5,7 @@ kind: Pod
 spec:
   containers:
   - name: sync
-    image: gcr.io/jdzsz/monorepo/sync-builddata:1
+    image: testmnrp/sync-builddata:1
     imagePullPolicy: IfNotPresent
     command:
     - cat

@@ -46,8 +46,8 @@ spec:
 
       container('kaniko') {
         stage('Copy credentials') {
-          withCredentials([file(credentialsId: 'jenkins-registry-json	', variable: 'jenkinsRegistryJson')]) {
-            sh '''cat $jenkinsRegistryJson > /kaniko/config.json'''
+          withCredentials([usernamePassword(credentialsId: 'jenkins-dockerhub-credentials', passwordVariable: 'CI_REGISTRY_PASSWORD', usernameVariable: 'CI_REGISTRY_USER')]) {
+            sh "echo '{\"auths\":{\"https://index.docker.io/v1/\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}' > /kaniko/.docker/config.json"
           }
         }
 
@@ -62,7 +62,7 @@ spec:
 }
 
 def runKaniko(String imageName, String imageVersion){
-  sh """/kaniko/executor -f `pwd`/.jenkins/dockerfiles/$imageName/Dockerfile -c `pwd`  --cache=true --destination=jdzsz/$imageName:$imageVersion"""
+  sh """/kaniko/executor -f `pwd`/.jenkins/dockerfiles/$imageName/Dockerfile -c `pwd`  --cache=true --destination=$imageName:$imageVersion"""
 }
 
 def getHeadTags(){

@@ -16,7 +16,7 @@ kind: Pod
 spec:
   containers:
   - name: flutter
-    image: gcr.io/jdzsz/monorepo/flutter-chromedriver:1   
+    image: testmnrp/flutter-chromedriver:1
     imagePullPolicy: IfNotPresent
     command:
     - cat
