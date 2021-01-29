@@ -3,6 +3,14 @@
 pipelineJob('coverage_converter') {
     displayName('Coverage converter')
 
+    properties{
+      pipelineTriggers{
+        triggers{
+          githubPush()
+        }
+      }
+    }
+
     definition {
         cpsScm {
             scm {
