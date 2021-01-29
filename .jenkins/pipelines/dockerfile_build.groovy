@@ -62,7 +62,7 @@ spec:
 }
 
 def runKaniko(String imageName, String imageVersion){
-  sh """/kaniko/executor -f `pwd`/.jenkins/dockerfiles/$imageName/Dockerfile -c `pwd`  --cache=true --destination=jdzsz/$imageName:$imageVersion"""
+  sh """/kaniko/executor -f `pwd`/.jenkins/dockerfiles/$imageName/Dockerfile -c `pwd`  --cache=true --destination=$imageName:$imageVersion"""
 }
 
 def getHeadTags(){
