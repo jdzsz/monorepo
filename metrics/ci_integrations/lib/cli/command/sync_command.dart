@@ -19,6 +19,20 @@ import 'package:ci_integration/integration/interface/source/client/source_client
 
 /// A class representing a [Command] for synchronizing builds.
 class SyncCommand extends CiIntegrationCommand<void> with LoggerMixin {
+  /// A default number of builds to sync during the initial synchronization
+  /// of the project.
+  static const defaultInitialSyncLimit = '28';
+
+  /// A name of the option that holds a path to the YAML configuration file.
+  static const _configFileOptionName = 'config-file';
+
+  /// A name of the initial sync limit option.
+  static const _initialSyncLimitOptionName = 'initial-sync-limit';
+
+  /// A name of the flag that indicates whether to fetch coverage data
+  /// for builds or not.
+  static const String _coverageFlagName = 'coverage';
+
   /// Used to parse configuration file main components.
   final _rawConfigParser = const RawIntegrationConfigParser();
 
@@ -40,15 +54,30 @@ class SyncCommand extends CiIntegrationCommand<void> with LoggerMixin {
     SupportedIntegrationParties supportedParties,
   }) : supportedParties = supportedParties ?? SupportedIntegrationParties() {
     argParser.addOption(
-      'config-file',
+      _configFileOptionName,
       help: 'A path to the YAML configuration file.',
       valueHelp: 'config.yaml',
+    );
+
+    argParser.addOption(
+      _initialSyncLimitOptionName,
+      help:
+          'A number of builds to fetch from the source during project initial synchronization. The value should be an integer number greater than 0.',
+      valueHelp: defaultInitialSyncLimit,
+      defaultsTo: defaultInitialSyncLimit,
+    );
+
+    argParser.addFlag(
+      _coverageFlagName,
+      help: 'Whether to fetch coverage for each build during the sync.',
+      defaultsTo: true,
     );
   }
 
   @override
   Future<void> run() async {
-    final configFilePath = getArgumentValue('config-file') as String;
+    final configFilePath = getArgumentValue(_configFileOptionName) as String;
+    final coverage = getArgumentValue(_coverageFlagName) as bool;
     final file = getConfigFile(configFilePath);
 
     if (file.existsSync()) {
@@ -88,9 +117,16 @@ class SyncCommand extends CiIntegrationCommand<void> with LoggerMixin {
           destinationParty,
         );
 
+        final initialSyncLimitArgument =
+            getArgumentValue(_initialSyncLimitOptionName) as String;
+        final initialSyncLimit = parseInitialSyncLimit(
+          initialSyncLimitArgument,
+        );
         final syncConfig = SyncConfig(
           sourceProjectId: sourceConfig.sourceProjectId,
           destinationProjectId: destinationConfig.destinationProjectId,
+          initialSyncLimit: initialSyncLimit,
+          coverage: coverage,
         );
 
         logger.info('Syncing...');
@@ -161,8 +197,8 @@ class SyncCommand extends CiIntegrationCommand<void> with LoggerMixin {
   FutureOr<T> createClient<T extends IntegrationClient>(
     Config config,
     IntegrationParty<Config, T> party,
-  ) {
-    final client = party.clientFactory.create(config);
+  ) async {
+    final client = await party.clientFactory.create(config);
     logger.info('$client was created.');
 
     return client;
@@ -187,6 +223,7 @@ class SyncCommand extends CiIntegrationCommand<void> with LoggerMixin {
     DestinationClient destinationClient,
   ) async {
     final ciIntegration = createCiIntegration(sourceClient, destinationClient);
+
     final result = await ciIntegration.sync(syncConfig);
 
     if (result.isSuccess) {
@@ -194,6 +231,13 @@ class SyncCommand extends CiIntegrationCommand<void> with LoggerMixin {
     } else {
       throw SyncError(message: result.message);
     }
+  }
+
+  /// Parses the initial sync limit from the given [value].
+  int parseInitialSyncLimit(String value) {
+    logger.info('Parsing initial sync limit...');
+
+    return int.tryParse(value);
   }
 
   /// Closes both [sourceClient] and [destinationClient] and cleans up any

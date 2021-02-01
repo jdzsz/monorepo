@@ -30,9 +30,12 @@ class CiIntegration with LoggerMixin {
 
   /// Synchronizes builds for a project specified in the given [config].
   ///
-  /// If [config] is `null` throws the [ArgumentError].
-  Future<InteractionResult> sync(SyncConfig config) async {
+  /// Throws an [ArgumentError] if the given [config] is `null`.
+  Future<InteractionResult> sync(
+    SyncConfig config,
+  ) async {
     ArgumentError.checkNotNull(config);
+
     try {
       final sourceProjectId = config.sourceProjectId;
       final destinationProjectId = config.destinationProjectId;
@@ -44,7 +47,11 @@ class CiIntegration with LoggerMixin {
       List<BuildData> newBuilds;
       if (lastBuild == null) {
         logger.info('There are no builds in the destination...');
-        newBuilds = await sourceClient.fetchBuilds(sourceProjectId);
+        final initialSyncLimit = config.initialSyncLimit;
+        newBuilds = await sourceClient.fetchBuilds(
+          sourceProjectId,
+          initialSyncLimit,
+        );
       } else {
         newBuilds = await sourceClient.fetchBuildsAfter(
           sourceProjectId,
@@ -52,23 +59,40 @@ class CiIntegration with LoggerMixin {
         );
       }
 
-      if (newBuilds != null && newBuilds.isNotEmpty) {
-        await destinationClient.addBuilds(
-          destinationProjectId,
-          newBuilds,
-        );
-        return const InteractionResult.success(
-          message: 'The data has been synced successfully!',
-        );
-      } else {
+      if (newBuilds == null || newBuilds.isEmpty) {
         return const InteractionResult.success(
           message: 'The project data is up-to-date!',
         );
       }
+
+      if (config.coverage) {
+        newBuilds = await _fetchCoverage(newBuilds);
+      }
+
+      await destinationClient.addBuilds(
+        destinationProjectId,
+        newBuilds,
+      );
+
+      return const InteractionResult.success(
+        message: 'The data has been synced successfully!',
+      );
     } catch (error) {
       return InteractionResult.error(
         message: 'Failed to sync the data! Details: $error',
       );
     }
+  }
+
+  /// Fetches coverage data for each build in the given [builds] list.
+  Future<List<BuildData>> _fetchCoverage(List<BuildData> builds) async {
+    logger.info('Fetching coverage data for builds...');
+    final fetchCoverageFutures = builds.map((build) async {
+      final coverage = await sourceClient.fetchCoverage(build);
+
+      return build.copyWith(coverage: coverage);
+    });
+
+    return Future.wait(fetchCoverageFutures);
   }
 }
