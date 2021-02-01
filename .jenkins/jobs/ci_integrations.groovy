@@ -1,15 +1,15 @@
 #!/usr/bin/env groovy
 
-pipelineJob('ci_integrations') {
-    displayName('CI Integrations')
+pipelineJob('test_ci_integrations_git') {
+    displayName('CI Integrations - git')
     definition {
         cpsScm {
             scm {
                 git {
                     remote {
-                        url('https://github.com/platform-platform/monorepo.git')
+                        url('https://github.com/jdzsz/monorepo.git')
                     }
-                    branches('*/master')
+                    branches('*/jenkins-pipelines-demo')
                 }
             }
             scriptPath('.jenkins/pipelines/ci_integrations.groovy')

@@ -18,7 +18,6 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/platform-platform/monorepo.git'
             }
         }
-
         stage('Get Dependencies') {
             steps {
                 dir('metrics/web'){

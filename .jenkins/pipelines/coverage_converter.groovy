@@ -12,7 +12,6 @@ pipeline {
         METRICS_PROJECT_ID = "jenkins_coverage_converter"
     }
     stages {
-
         stage('Git clone') {
             steps {
                 git branch: 'master', url: 'https://github.com/platform-platform/monorepo.git'

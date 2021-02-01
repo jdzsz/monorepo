@@ -1,15 +1,15 @@
 #!/usr/bin/env groovy
 
-pipelineJob('coverage_converter') {
-    displayName('Coverage converter')
+pipelineJob('test_coverage_converter_git') {
+    displayName('Coverage converter - git')
     definition {
         cpsScm {
             scm {
                 git {
                     remote {
-                        url('https://github.com/platform-platform/monorepo.git')
+                        url('https://github.com/jdzsz/monorepo.git')
                     }
-                    branches('*/master')
+                    branches('*/jenkins-pipelines-demo')
                 }
             }
             scriptPath('.jenkins/pipelines/coverage_converter.groovy')

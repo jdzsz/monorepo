@@ -1,15 +1,15 @@
 #!/usr/bin/env groovy
 
-pipelineJob('sync_build_data') {
-    displayName('Sync build data')
+pipelineJob('test_sync_git') {
+    displayName('Sync - git')
     definition {
         cpsScm {
             scm {
                 git {
                     remote {
-                        url('https://github.com/platform-platform/monorepo.git')
+                        url('https://github.com/jdzsz/monorepo.git')
                     }
-                    branches('*/master')
+                    branches('*/jenkins-pipelines-demo')
                 }
             }
             scriptPath('.jenkins/pipelines/sync.groovy')
