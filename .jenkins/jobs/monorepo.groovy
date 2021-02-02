@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
-pipelineJob('monorepo') {
-    displayName('Monorepo')
+pipelineJob('test_monorepo_git') {
+    displayName('Monorepo - git')
 
     properties {
         pipelineTriggers {
@@ -16,9 +16,9 @@ pipelineJob('monorepo') {
             scm {
                 git {
                     remote {
-                        url('https://github.com/platform-platform/monorepo.git')
+                        url('https://github.com/jdzsz/monorepo.git')
                     }
-                    branches('*/master')
+                    branches('*/jenkins-pipelines-demo')
                 }
             }
             scriptPath('.jenkins/pipelines/monorepo.groovy')
