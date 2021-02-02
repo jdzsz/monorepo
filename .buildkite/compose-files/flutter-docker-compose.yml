@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  flutter:
+    image: "testmnrp/flutter-chromedriver:3"
+    volumes:
+      - ../../.:/monorepo
+      - pubcache:/pubcache
+    environment:
+      - "PUB_CACHE=/pubcache/"
+volumes:
+  pubcache:
