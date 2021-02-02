@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  dart:
+    image: "testmnrp/dart-converter:2"
+    volumes:
+      - ../../.:/monorepo
+      - pubcache:/pubcache
+    environment:
+      - "PUB_CACHE=/pubcache/"
+volumes:
+  pubcache:
