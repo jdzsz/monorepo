@@ -12,6 +12,7 @@ pipeline {
         METRICS_PROJECT_ID = "jenkins_coverage_converter"
     }
     stages {
+
         stage('Git clone') {
             steps {
                 git branch: 'master', url: 'https://github.com/platform-platform/monorepo.git'
@@ -36,7 +37,7 @@ pipeline {
                                 }
                             }
                         }
-                        stage('Test coverage') {
+                        stage('Coverage test') {
                             steps {
                                 dir('metrics/coverage_converter'){
                                     sh 'pub run test_coverage --print-test-output --no-badge --port 9498'
@@ -45,7 +46,6 @@ pipeline {
                         }
                    }
                }
-
         stage('Convert coverage report') {
             steps {
                 dir('metrics/coverage_converter'){

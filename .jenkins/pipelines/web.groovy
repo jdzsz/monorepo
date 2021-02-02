@@ -26,7 +26,6 @@ pipeline {
                 }
             }
         }
-
         stage('Run tests') {
                     failFast true
                     parallel {
