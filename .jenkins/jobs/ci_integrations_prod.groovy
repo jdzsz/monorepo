@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
-pipelineJob('test_prod_sync_git') {
-    displayName('Prod Sync - git')
+pipelineJob('test_prod_ci_integrations_git') {
+    displayName('Prod CI Integrations - git')
     definition {
         cpsScm {
             scm {
@@ -12,7 +12,7 @@ pipelineJob('test_prod_sync_git') {
                     branches('*/jenkins-pipelines-demo')
                 }
             }
-            scriptPath('.jenkins/pipelines/sync_prod.groovy')
+            scriptPath('.jenkins/pipelines/ci_integrations_prod.groovy')
         }
     }
 }

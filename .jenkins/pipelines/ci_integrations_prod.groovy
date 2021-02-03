@@ -58,7 +58,7 @@ pipeline {
         always {
             archiveArtifacts artifacts: 'metrics/ci_integrations/coverage-summary.json', fingerprint: true, allowEmptyArchive: true
             cleanWs cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true, notFailBuild: true
-            build job: 'test_prod_sync_git', propagate: false, wait: false, parameters: [string(name: 'FIREBASE_PROJECT_ID', value: "${env.PROD_CI_INTEGRATIONS_METRICS_PROJECT_ID}"), string(name: 'METRICS_PROJECT_ID', value: "${env.PROD_METRICS_PROJECT_ID}"), string(name: 'ANCESTOR_JOB_NAME', value: "${env.JOB_NAME}")]
+            build job: 'test_prod_sync_git', propagate: false, wait: false, parameters: [string(name: 'FIREBASE_PROJECT_ID', value: "${env.PROD_FIREBASE_PROJECT_ID}"), string(name: 'METRICS_PROJECT_ID', value: "${env.PROD_CI_INTEGRATIONS_METRICS_PROJECT_ID}"), string(name: 'ANCESTOR_JOB_NAME', value: "${env.JOB_NAME}")]
         }
     }
 }
