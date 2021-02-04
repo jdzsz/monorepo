@@ -1,8 +1,0 @@
-name: Metrics CI Integrations Actions
-
-on:
-  push:
-    branches: master
-    paths:
-      - metrics/ci_integrations/**
-      - metrics/core/**
