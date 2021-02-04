@@ -1,0 +1,79 @@
+name: Coverage Converter Actions
+
+on:
+  push:
+    branches: workflows
+    paths:
+      - /**
+
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    container: google/dart:2.12.0-259.8.beta
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          ref: ${{ github.ref }}
+
+      - name: Get Dependencies
+        run: pub get
+        working-directory: metrics/coverage_converter/
+
+      - name: Build Project
+        if: github.event_name == 'push' && github.ref == 'refs/heads/workflows'
+        run: dart2native bin/main.dart -o ./coverage_converter_linux
+        working-directory: metrics/coverage_converter/
+
+      - name: Upload Artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/workflows'
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage_converter_linux
+          path: metrics/coverage_converter/coverage_converter_linux
+          if-no-files-found: error
+
+#   release-actions:
+#     name: Coverage Converter Release Actions
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 60
+#     needs: [ container ]
+
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 1
+#           ref: ${{ github.ref }}
+
+#       - name: Install GitHub CLI
+#         run: |
+#           sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+#           sudo apt-add-repository https://cli.github.com/packages
+#           sudo apt update
+#           sudo apt install gh
+
+#       - name: Configure GitHub CLI
+#         run: gh auth login --with-token <<< ${{ secrets.GITHUB_TOKEN }}
+
+#       - name: Download MacOS Build
+#         uses: actions/download-artifact@v2
+#         with:
+#           name: coverage_converter_macos
+#           path: metrics/coverage_converter/
+
+#       - name: Download Linux Build
+#         uses: actions/download-artifact@v2
+#         with:
+#           name: coverage_converter_linux
+#           path: metrics/coverage_converter/
+
+#       - name: Delete release
+#         run: |
+#           gh release delete coverage-converter-snapshot -y
+#           git push --delete origin coverage-converter-snapshot
+
+#       - name: Create release
+#         run: gh release create coverage-converter-snapshot metrics/coverage_converter/coverage_converter_macos metrics/coverage_converter/coverage_converter_linux --prerelease --title 'Coverage converter snapshot'
