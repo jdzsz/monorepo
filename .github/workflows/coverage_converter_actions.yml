@@ -87,19 +87,19 @@ jobs:
         run: echo "name=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
         
       - name: Set current date as env variable
-        run: echo "DATE_YMD::$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
         
       - name: Test with environment variables
         run: echo $TAG_NAME - $RELEASE_NAME
         env:
-          RELEASE_NAME: pre-release-${{ steps.date.outputs.date }}
+          RELEASE_NAME: pre-release-${{ env.current_date }}
 
       - name: Output Run ID
         run: echo ${{ github.run_id }}
       - name: Output Run Number
         run: echo ${{ github.run_number }}
       - name: Output tag
-        run: echo $DATE_YMD-${{ github.run_number }}
+        run: echo ${{ env.current_date }}-${{ github.run_number }}
 #       - name: Build 
 #         uses: docker/build-push-action@v2
 #         with:
