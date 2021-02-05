@@ -88,9 +88,9 @@ jobs:
       - name: Build 
         uses: docker/build-push-action@v1
         with:
-          context: .
           dockerfile: dockerfiles/coverage_converter/Dockerfile
           push: true
-          tags: ghcr.io/jdzsz/coverage_converter:latest
+          repository: ghcr.io/jdzsz/coverage_converter
+          tags: latest
 
         
