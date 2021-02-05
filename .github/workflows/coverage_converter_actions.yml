@@ -85,4 +85,4 @@ jobs:
           tags: latest
           username: ${{ github.repository_owner }}
           password: ${{ secrets.REGISTRY_TOKEN }}
-        
+          registry: gcr.io
