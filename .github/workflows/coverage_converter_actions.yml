@@ -91,8 +91,6 @@ jobs:
           context: .
           dockerfile: dockerfiles/coverage_converter/Dockerfile
           push: true
-          tags: |
-            ghcr.io/jdzsz/coverage_converter:latest
-            ghcr.io/jdzsz/coverage_converter:${{ env.DOCKER_RELEASE }}
+          tags: ghcr.io/jdzsz/coverage_converter:latest
 
         
