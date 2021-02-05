@@ -16,21 +16,21 @@ jobs:
           fetch-depth: 1
           ref: ${{ github.ref }}
 
-      - name: Get Dependencies
-        run: pub get
-        working-directory: metrics/coverage_converter/
+      # - name: Get Dependencies
+      #   run: pub get
+      #   working-directory: metrics/coverage_converter/
 
-      - name: Build Project
-        if: github.event_name == 'push' && github.ref == 'refs/heads/workflows-test'
-        run: dart2native bin/main.dart -o ./coverage_converter_linux
-        working-directory: metrics/coverage_converter/
+      # - name: Build Project
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/workflows-test'
+      #   run: dart2native bin/main.dart -o ./coverage_converter_linux
+      #   working-directory: metrics/coverage_converter/
 
-      - name: Upload Artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/workflows-test'
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage_converter_linux
-          path: metrics/coverage_converter/coverage_converter_linux
+      # - name: Upload Artifact
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/workflows-test'
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: coverage_converter_linux
+      #     path: metrics/coverage_converter/coverage_converter_linux
           if-no-files-found: error
 
   release-actions:
@@ -62,13 +62,13 @@ jobs:
           name: coverage_converter_linux
           path: metrics/coverage_converter/
 
-      - name: Delete release
-        run: |
-          gh release delete coverage-converter-snapshot -y
-          git push --delete origin coverage-converter-snapshot
+      # - name: Delete release
+      #   run: |
+      #     gh release delete coverage-converter-snapshot -y
+      #     git push --delete origin coverage-converter-snapshot
 
-      - name: Create release
-        run: gh release create coverage-converter-snapshot metrics/coverage_converter/coverage_converter_linux --prerelease --title 'Coverage converter snapshot'
+      # - name: Create release
+      #   run: gh release create coverage-converter-snapshot metrics/coverage_converter/coverage_converter_linux --prerelease --title 'Coverage converter snapshot'
     
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
