@@ -79,14 +79,12 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1 
         with:
-          username: ${{ secrets.REGISTRY_USERNAME }}
+          registry: docker.pkg.github.com
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.REGISTRY_TOKEN }}
         
-      - name: Set current date as env variable
-        run: echo "CURRENT_DATE=$(date +'%Y-%m')" >> $GITHUB_ENV
-        
       - name: Set container tag
-        run: echo "DOCKER_RELEASE=${{ env.CURRENT_DATE }}-${{ github.run_number }}" >> $GITHUB_ENV
+        run: echo "DOCKER_RELEASE=$(date +'%Y-%m')-${{ github.run_number }}" >> $GITHUB_ENV
         
       - name: Build 
         uses: docker/build-push-action@v2
