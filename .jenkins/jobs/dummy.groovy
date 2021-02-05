@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
-pipelineJob('test_web_git') {
-    displayName('Web - git')
+pipelineJob('test_dummy_git') {
+    displayName('Dummy - git')
     definition {
         cpsScm {
             scm {
@@ -12,7 +12,7 @@ pipelineJob('test_web_git') {
                     branches('*/jenkins-pipelines-demo')
                 }
             }
-            scriptPath('.jenkins/pipelines/web.groovy')
+            scriptPath('.jenkins/pipelines/dummy.groovy')
         }
     }
 }
