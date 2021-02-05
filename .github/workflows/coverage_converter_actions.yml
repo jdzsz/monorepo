@@ -62,13 +62,13 @@ jobs:
           name: coverage_converter_linux
           path: metrics/coverage_converter/
 
-#       - name: Delete release
-#         run: |
-#           gh release delete coverage-converter-snapshot -y
-#           git push --delete origin coverage-converter-snapshot
+      - name: Delete release
+        run: |
+          gh release delete coverage-converter-snapshot -y
+          git push --delete origin coverage-converter-snapshot
 
-#       - name: Create release
-#         run: gh release create coverage-converter-snapshot metrics/coverage_converter/coverage_converter_linux --prerelease --title 'Coverage converter snapshot'
+      - name: Create release
+        run: gh release create coverage-converter-snapshot metrics/coverage_converter/coverage_converter_linux --prerelease --title 'Coverage converter snapshot'
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -97,5 +97,6 @@ jobs:
           push: true
           tags: |
             ghcr.io/jdzsz/coverage_converter:latest
+            ghcr.io/jdzsz/coverage_converter:${{ env.DOCKER_RELEASE }}
 
         
