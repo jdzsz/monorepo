@@ -93,4 +93,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/jdzsz/coverage_converter:latest
+          tags: ghcr.io/jdzsz/monorepo/coverage_converter:latest
