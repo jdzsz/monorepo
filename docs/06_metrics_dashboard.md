@@ -4,7 +4,7 @@ Display projects and associated metrics for each project.
 For metrics definitions see [metrics definitions](05_project_metrics.md).
 
 ### Build Chart (Bar chart)
-- 14 last builds with colors indicating build success/failure
+- 30 last builds with colors indicating build success/failure
 - Any aborted build counted as failed
 - Bar height is the time it took the build to finish (without queue time)
 
@@ -21,7 +21,7 @@ it’s 20M - meaning 20 minutes
 
 ### Stability
 - Displays "Stability" metric
-- Data displayed for the last 14 builds
+- Data displayed for the last 30 builds
 
 ### Coverage
 - Displays "Coverage" metric
