@@ -85,12 +85,14 @@ jobs:
         
       - name: copy Dockerfile
         run: cp dockerfiles/coverage_converter/Dockerfile Dockerfile
+
+      - name: show df 
+        run: cat Dockerfile
       - name: Build 
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/386
+          # platforms: linux/amd64
           push: true
           tags: |
             ghcr.io/jdzsz/coverage_converter:latest
