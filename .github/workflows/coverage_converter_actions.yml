@@ -83,10 +83,12 @@ jobs:
       - name: Set container tag
         run: echo "DOCKER_RELEASE=$(date +'%Y-%m')-${{ github.run_number }}" >> $GITHUB_ENV
         
+      - name: copy Dockerfile
+        run: cp dockerfiles/coverage_converter/Dockerfile Dockerfile
       - name: Build 
         uses: docker/build-push-action@v2
         with:
-          context: ./dockerfiles/coverage_converter/
+          context: .
           file: Dockerfile
           platforms: linux/amd64,linux/arm64,linux/386
           push: true
