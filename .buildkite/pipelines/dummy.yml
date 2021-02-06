@@ -1,0 +1,26 @@
+steps:
+  - label: "Dummy step"
+    key: "dummy"
+    commands:
+      - /opt/randomsleep.sh
+    plugins:
+      - docker-compose:
+          config: ".buildkite/compose-files/dummy-docker-compose.yml"
+          run: dummy
+
+  - label: "Finalize build"
+    key: "finalize"
+    depends_on:
+      - step: "dummy"
+    commands:
+      - echo "The build is completed."
+
+  - label: "Trigger sync for a Web project"
+    trigger: sync-pipeline
+    depends_on: "finalize"
+    allow_dependency_failure: true
+    async: true
+    build:
+      env:
+        PIPELINE_SLUG: "${BUILDKITE_PIPELINE_SLUG}"
+        METRICS_PROJECT_ID: "buildkite_dummy"

@@ -133,6 +133,29 @@ jobs:
       - name: Create release
         run: gh release create ci_integrations-snapshot metrics/ci_integrations/ci_integrations_macos metrics/ci_integrations/ci_integrations_linux --prerelease --title 'CI Integrations snapshot'
 
+      - name: Generate image tag
+        run: echo "DOCKER_RELEASE=$(date +'%Y-%m')-${{ github.run_number }}" >> $GITHUB_ENV
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        
+      - name: Login to registry
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./dockerfiles/ci_integrations/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ghcr.io/platform-platform/monorepo/ci_integrations:latest
+            ghcr.io/platform-platform/monorepo/ci_integrations:${{ env.DOCKER_RELEASE }}
+
   notify-actions:
     name: Notify about building finished
     runs-on: macos-latest
