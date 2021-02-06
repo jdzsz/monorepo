@@ -19,7 +19,7 @@ import 'package:rxdart/rxdart.dart';
 class ReceiveProjectMetricsUpdates
     implements UseCase<Stream<DashboardProjectMetrics>, ProjectIdParam> {
   /// A number of builds to load for chart metrics.
-  static const int buildsToLoadForChartMetrics = 20;
+  static const int buildsToLoadForChartMetrics = 30;
 
   /// A [Duration] of a loading period for builds.
   static const Duration buildsLoadingPeriod = Duration(days: 6);
