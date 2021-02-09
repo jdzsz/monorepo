@@ -3,4 +3,4 @@ services:
   ubuntu:
     image: "ubuntu:focal"
     volumes:
-      - ../../.:/buildkite/builds/monorepo
+      - ../../.:/monorepo
