@@ -17,7 +17,7 @@ steps:
       - echo "The build is completed."
 
   - label: "Trigger sync for a dummy project"
-    trigger: sync-pipeline
+    trigger: dummy-sync-test
     depends_on: "finalize"
     allow_dependency_failure: true
     async: true
