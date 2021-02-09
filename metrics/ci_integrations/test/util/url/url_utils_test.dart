@@ -1,3 +1,6 @@
+// Use of this source code is governed by the Apache License, Version 2.0 
+// that can be found in the LICENSE file.
+
 import 'package:ci_integration/util/url/url_utils.dart';
 import 'package:test/test.dart';
 
@@ -66,6 +69,39 @@ void main() {
         final expected = uri.toString();
 
         expect(result, equals(expected));
+      },
+    );
+
+    test(
+      ".removeTrailingSlash() throws an ArgumentError if the given path is null",
+      () {
+        expect(
+          () => UrlUtils.removeTrailingSlash(null),
+          throwsArgumentError,
+        );
+      },
+    );
+
+    test(
+      ".removeTrailingSlash() returns unchanged string if the given path does not end with slash",
+      () {
+        const path = 'path';
+
+        final result = UrlUtils.removeTrailingSlash(path);
+
+        expect(result, equals(path));
+      },
+    );
+
+    test(
+      ".removeTrailingSlash() returns a string without trailing slash",
+      () {
+        const expectedPath = 'path';
+        const path = 'path/';
+
+        final result = UrlUtils.removeTrailingSlash(path);
+
+        expect(result, equals(expectedPath));
       },
     );
 
