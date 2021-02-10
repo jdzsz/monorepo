@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/platform-platform/monorepo.git'
+                git branch: 'jenkins-k8s-dev', url: 'https://github.com/jdzsz/monorepo.git'
             }
         }
 

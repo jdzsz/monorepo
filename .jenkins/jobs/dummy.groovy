@@ -16,9 +16,9 @@ pipelineJob('dummy') {
             scm {
                 git {
                     remote {
-                        url('https://github.com/platform-platform/monorepo.git')
+                        url('https://github.com/jdzsz/monorepo.git')
                     }
-                    branches('*/master')
+                    branches('*/jenkins-k8s-dev')
                 }
             }
             scriptPath('.jenkins/pipelines/dummy.groovy')
